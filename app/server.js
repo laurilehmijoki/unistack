@@ -5,6 +5,7 @@ import * as pages from './pages/pages.js'
 import path from 'path'
 import sass from 'node-sass'
 import compression from 'compression'
+import crypto from 'crypto'
 import Promise from 'bluebird'
 const fs = Promise.promisifyAll(require('fs'))
 
@@ -25,12 +26,15 @@ server.get('*', (req, res, next) => {
     const page = pages.findPage(req.url)
     if (page) {
         Promise
-            .all([fs.statAsync(cssFilePath), fs.statAsync(bundleJsFilePath)])
-            .then(([cssStats, bundleJsStats]) => {
+            .all([fs.readFileAsync(cssFilePath), fs.readFileAsync(bundleJsFilePath)])
+            .then(([cssContent, bundleJsContent]) => {
                 res.send(React.renderToString(basePage(
                     page,
                     page.initialState,
-                    {cssChecksum: cssStats.mtime.getTime(), bundleJsChecksum: bundleJsStats.mtime.getTime()}
+                    {
+                        cssChecksum: crypto.createHash('md5').update(cssContent).digest('hex'),
+                        bundleJsChecksum: crypto.createHash('md5').update(bundleJsContent).digest('hex')
+                    }
                 )))
             })
             .catch(next)
