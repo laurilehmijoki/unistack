@@ -19,4 +19,4 @@ const App = React.createClass({
     }
 })
 
-React.render(<App/>, document)
+window.onload = () => React.render(<App/>, document)
