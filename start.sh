@@ -19,15 +19,5 @@ else
     --include-path="app" \
     --ext scss &
 
-  while [ ! -f .generated/style.css ]
-  do
-    echo Waiting for SASS compilation to complete...
-    sleep 1
-  done
-  while [ ! -f .generated/bundle.js ]
-  do
-    echo Waiting for Browserify compilation to complete...
-    sleep 1
-  done
   node_modules/supervisor/lib/cli-wrapper.js --quiet --ignore node_modules --watch app app/bootstrap.js
 fi
