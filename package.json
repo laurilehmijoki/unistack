@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "An example of unistack",
   "scripts": {
-    "start": "./start.sh"
+    "start": "./start"
   },
   "author": "Lauri Lehmijoki <lauri.lehmijoki@iki.fi>",
   "license": "MIT",
