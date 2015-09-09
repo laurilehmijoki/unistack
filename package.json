@@ -6,7 +6,6 @@
   "scripts": {
     "start": "./start"
   },
-  "author": "Lauri Lehmijoki <lauri.lehmijoki@iki.fi>",
   "license": "MIT",
   "dependencies": {
     "babel": "5.8.21",
