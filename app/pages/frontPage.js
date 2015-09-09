@@ -2,7 +2,7 @@ import React from 'react'
 import Bacon from 'baconjs'
 
 export const renderPage = applicationState =>
-    <body className="frontPage">
+    <body>
         <h1>hello unistack!</h1>
         <button onClick={() => buttonClickedBus.push()}>
             click me
