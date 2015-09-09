@@ -1,0 +1,67 @@
+#!/usr/bin/env node
+
+var Promise = require('bluebird')
+var fs = Promise.promisifyAll(require('fs'))
+var path = require('path')
+var readline = require("readline")
+
+var rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+})
+
+var question = Promise.promisify(function(question, callback) {
+    rl.question(question, callback.bind(null, null))
+})
+
+var routeUrl = question('Enter the URL of the new route (e.g., /login)\n')
+
+function pageFileName(url) {
+    var asciiRangePattern = /[\W_]+/g
+    return url.replace(asciiRangePattern, "") + "Page.js"
+}
+
+var pagesPath = path.join(__dirname, 'app', 'pages', 'pages.js')
+var pagesFileContent = routeUrl.then(function(url) {
+    return fs.readFileAsync(pagesPath).call('toString').then(function(pagesContent) {
+        return pagesContent.replace("allPages = [", "allPages = [\n    require('./"+pageFileName(url)+"'),")
+    })
+})
+
+var newPageContent = routeUrl
+    .then(function(url) {
+        return [
+            "import React from 'react'",
+            "import Bacon from 'baconjs'",
+            "",
+            "export const renderPage = applicationState =>",
+            "    <body>",
+            "        <h1>hello "+url+"</h1>",
+            "    </body>",
+            "",
+            "export const initialState = {}",
+            "",
+            "export const pagePath = '"+url+"'",
+            "",
+            "export const pageTitle = 'Page at "+url+"'",
+            "",
+            "export const applicationStateProperty = initialState => Bacon.update(",
+            "    initialState",
+            ").doLog('applicationState')"
+        ].join('\n')
+    })
+
+Promise
+    .join(newPageContent, routeUrl, pagesFileContent, function(pageString, url, pagesString) {
+        return Promise.all([
+            fs.writeFileAsync(path.join(__dirname, 'app', 'pages', pageFileName(url)), pageString),
+            fs.writeFileAsync(pagesPath, pagesString)
+        ])
+    })
+    .then(function() {
+        process.exit(0)
+    })
+    .catch(function(err) {
+        console.error(err)
+        process.exit(1)
+    })
