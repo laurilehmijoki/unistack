@@ -3,6 +3,7 @@
 var Promise = require('bluebird')
 var fs = Promise.promisifyAll(require('fs'))
 var path = require('path')
+require('colors')
 var readline = require("readline")
 
 var rl = readline.createInterface({
@@ -53,10 +54,14 @@ var newPageContent = routeUrl
 
 Promise
     .join(newPageContent, routeUrl, pagesFileContent, function(pageString, url, pagesString) {
-        return Promise.all([
-            fs.writeFileAsync(path.join(__dirname, 'app', 'pages', pageFileName(url)), pageString),
-            fs.writeFileAsync(pagesPath, pagesString)
-        ])
+        return Promise
+            .all([
+                fs.writeFileAsync(path.join(__dirname, 'app', 'pages', pageFileName(url)), pageString),
+                fs.writeFileAsync(pagesPath, pagesString)
+            ])
+            .then(function() {
+                console.log("Success!".green, "Created new a page at", url)
+            })
     })
     .then(function() {
         process.exit(0)
