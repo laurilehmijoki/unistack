@@ -26,15 +26,12 @@ server.get('*', (req, res, next) => {
     const page = pages.findPage(req.url)
     if (page) {
         Promise
-            .all([fs.readFileAsync(cssFilePath), fs.readFileAsync(bundleJsFilePath)])
-            .then(([cssContent, bundleJsContent]) => {
+            .all([checksumPromise(cssFilePath), checksumPromise(bundleJsFilePath)])
+            .then(([cssChecksum, bundleJsChecksum]) => {
                 res.send(React.renderToString(basePage(
                     page,
                     page.initialState,
-                    {
-                        cssChecksum: crypto.createHash('md5').update(cssContent).digest('hex'),
-                        bundleJsChecksum: crypto.createHash('md5').update(bundleJsContent).digest('hex')
-                    }
+                    { cssChecksum, bundleJsChecksum}
                 )))
             })
             .catch(next)
@@ -52,6 +49,11 @@ server.get('/bundle.js', (req, res, next) => {
 })
 
 server.use(compression({threshold: 512}))
+
+const checksumPromise = filePath =>
+    fs
+        .readFileAsync(filePath)
+        .then(fileContent => crypto.createHash('md5').update(fileContent).digest('hex'))
 
 export const start = () => {
     const PORT = process.env.PORT || 4000
