@@ -15,14 +15,6 @@ const cssFilePath = path.resolve(`${__dirname}/../.generated/style.css`)
 const bundleJsFilePath = path.resolve(`${__dirname}/../.generated/bundle.js`)
 
 server.get('*', (req, res, next) => {
-    if (req.query.checksum) {
-        const oneYearInSeconds = 60 * 60 * 24 * 356
-        res.setHeader('Cache-Control', `public, max-age=${oneYearInSeconds}`)
-    }
-    next()
-})
-
-server.get('*', (req, res, next) => {
     const page = pages.findPage(req.url)
     if (page) {
         Promise
@@ -40,13 +32,23 @@ server.get('*', (req, res, next) => {
     }
 })
 
-server.get('/style.css', (req, res, next) => {
-    res.sendFile(cssFilePath)
-})
+const serveStaticResource = filePath => (req, res, next) => {
+    checksumPromise(filePath)
+        .then(checksum => {
+            if (req.query.checksum == checksum) {
+                const oneYearInSeconds = 60 * 60 * 24 * 356
+                res.setHeader('Cache-Control', `public, max-age=${oneYearInSeconds}`)
+                res.sendFile(filePath)
+            } else {
+                res.status(404).send()
+            }
+        })
+        .catch(next)
+}
 
-server.get('/bundle.js', (req, res, next) => {
-    res.sendFile(bundleJsFilePath)
-})
+server.get('/style.css', serveStaticResource(cssFilePath))
+
+server.get('/bundle.js', serveStaticResource(bundleJsFilePath))
 
 server.use(compression({threshold: 512}))
 
