@@ -10,7 +10,7 @@ Features
 * In-app routing with `history.pushState`
 * Database integration
 
-## Usage
+### Usage
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/laurilehmijoki/unistack/tree/examples/book-movie-tickets)
 
