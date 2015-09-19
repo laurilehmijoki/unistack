@@ -1,5 +1,35 @@
+@import "flexbox";
+
 body {
-  max-width: 1024px;
+  max-width: 768px;
   margin: 0 auto;
+}
+
+.page-title {
   text-align: center;
+}
+
+.movies {
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 0;
+  @include flexbox();
+  @include flex-direction(column);
+  &__movie {
+    @include flexbox();
+    @include flex-grow(1);
+    &:not(first-child) {
+      margin-top: 12px;
+    }
+    &__image-container {
+      width: 30%;
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+    &__details {
+      margin: 12px;
+    }
+  }
 }
