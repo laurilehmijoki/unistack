@@ -18,9 +18,35 @@
       pre {
         margin: 12px;
       }
+      header nav ul {
+        list-style-type: none;
+        padding: 0;
+        text-transform: uppercase;
+        border-bottom: 2px solid #C3C3C3;
+      }
+      header nav ul li {
+        display: inline-block;
+        margin-right: 12px;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
     </style>
   </head>
   <body>
+    <header>
+      <nav>
+        <ul>
+          <li> <a href="/">home</a> </li>
+          <li> <a href="/examples.html">examples</a> </li>
+          <li> <a href="https://github.com/laurilehmijoki/unistack">github repo</a> </li>
+        </ul>
+      </nav>
+    </header>
     {{content}}
   </body>
 </html>
