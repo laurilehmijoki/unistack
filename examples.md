@@ -16,9 +16,7 @@ Features
 
 or
 
-```
-mkdir -p /tmp/unistack-examples
-git clone --branch examples/book-movie-tickets https://github.com/laurilehmijoki/unistack.git /tmp/unistack-examples/book-movie-tickets
-cd /tmp/unistack-examples/book-movie-tickets
-npm start
-```
+    mkdir -p /tmp/unistack-examples
+    git clone --branch examples/book-movie-tickets https://github.com/laurilehmijoki/unistack.git /tmp/unistack-examples/book-movie-tickets
+    cd /tmp/unistack-examples/book-movie-tickets
+    npm start
