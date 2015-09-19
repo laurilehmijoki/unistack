@@ -20,3 +20,7 @@ or
     git clone --branch examples/book-movie-tickets https://github.com/laurilehmijoki/unistack.git /tmp/unistack-examples/book-movie-tickets
     cd /tmp/unistack-examples/book-movie-tickets
     npm start
+
+### Source code
+
+<https://github.com/laurilehmijoki/unistack/tree/examples/book-movie-tickets>
