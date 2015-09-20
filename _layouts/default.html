@@ -45,6 +45,13 @@
       a.nav-link:hover {
         text-decoration: underline;
       }
+      .bookmark-anchor {
+        opacity: 0;
+        margin-left: 6px;
+      }
+      .bookmark-anchor-container:hover .bookmark-anchor {
+        opacity: 0.7;
+      }
     </style>
   </head>
   <body>
@@ -59,4 +66,18 @@
     </header>
     {{content}}
   </body>
+  <script type="text/javascript">
+    ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].forEach(function(headerTag) {
+      var headerElems = document.getElementsByTagName(headerTag)
+      for (var i = 0; i < headerElems.length; i++) {
+        var headerElem = headerElems[i]
+        var bookmarkElem = document.createElement('a')
+        bookmarkElem.innerHTML = '#'
+        bookmarkElem.href = '#' + headerElem.id
+        bookmarkElem.className = 'bookmark-anchor'
+        headerElem.className = headerElem.className + ' bookmark-anchor-container'
+        headerElem.appendChild(bookmarkElem)
+      }
+    })
+  </script>
 </html>
