@@ -74,7 +74,7 @@ export const findUserId = url => {
     return userIdFromUrl ? userIdFromUrl[1] : undefined
 }
 
-export const initialState = (movies, url, bookings = {}) => ({
+export const initialState = (movies, url, bookings) => ({
     movies,
     url,
     bookings

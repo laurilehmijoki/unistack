@@ -48,7 +48,11 @@ server.get('*', (req, res, next) => {
             .then(([cssChecksum, bundleJsChecksum]) => {
                 res.send(ReactDOMServer.renderToString(basePage(
                     page,
-                    page.initialState(movies, req.url, bookings[page.findUserId(req.url)]),
+                    page.initialState(
+                        movies,
+                        req.url,
+                        bookings[page.findUserId(req.url)] || {} // Find the bookings of the user from the database
+                    ),
                     { cssChecksum, bundleJsChecksum}
                 )))
             })
@@ -61,7 +65,7 @@ server.get('*', (req, res, next) => {
 server.put('/api/users/:userId/bookings/:movieId', (req, res, next) => {
     var userId = req.params.userId
     const userBookings = bookings[userId] || {}
-    bookings[userId] = {...userBookings,
+    bookings[userId] = {...userBookings, // Store the booking into the database
         [req.params.movieId]: parseInt(req.query.amountOfTickets)
     }
     res.send('ok')
