@@ -86,7 +86,7 @@ export const findUserId = url => {
 export const initialState = (movies, initialUrl, initialBookings) => ({
     movies, // Our application contains movies [type: List[Map]]
     currentUrl: initialUrl, // .. and the current URL [type: String]
-    bookings: initialBookings // .. and the bookings of the user [type: Map[String, Map]]
+    bookings: initialBookings // .. and the bookings of the user [type: Map[String, Integer]]
 })
 
 export const pageTitle = 'Book movie tickets'
