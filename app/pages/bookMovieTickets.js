@@ -95,10 +95,16 @@ const userId = () => {
 }
 
 const bookingButtonClickedBus = new Bacon.Bus()
+
+/**
+ * The currentUrlStream emits an event every time the URL of our app changes.
+ */
 const currentUrlStream = Bacon.mergeAll(
-    bookingButtonClickedBus.map(() => `/user/${userId()}/bookings`).doAction(url => history.pushState({}, '', url)),
+    bookingButtonClickedBus // When the user presses the booking button, our current URL changes
+        .map(() => `/user/${userId()}/bookings`)
+        .doAction(url => history.pushState({}, '', url)),
     inBrowser ?
-        Bacon
+        Bacon // Also when the user navigates back or forward in the browser, our current URL changes
             .fromBinder(sink => { window.onpopstate = sink })
             .map(() => document.location.pathname)
         :
