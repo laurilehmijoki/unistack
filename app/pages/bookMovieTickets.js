@@ -113,16 +113,16 @@ const currentUrlStream = Bacon.mergeAll(
 
 const amountOfTicketsInput = new Bacon.Bus()
 const bookingsStream = amountOfTicketsInput
-    .filter(({textInput}) => /\d+/.test(textInput) || textInput === "")
+    .filter(({textInput}) => /\d+/.test(textInput) || textInput === "") // Accept only integers or an empty string as the amount-of-tickets input
     .map(({movieId, textInput}) => ({
-        movieId, amountOfTickets: textInput.length == 0 ? 0 : parseInt(textInput)
+        movieId, amountOfTickets: textInput.length == 0 ? 0 : parseInt(textInput) // Map the textual presentation of the amount-of-tickets into an integer
     }))
     .flatMap(({movieId, amountOfTickets}) =>
         Bacon
-            .fromPromise(request.put(
+            .fromPromise(request.put( // Send the booking info to the server
                 `/api/users/${userId()}/bookings/${movieId}?amountOfTickets=${amountOfTickets}`
             ))
-            .map(({movieId, amountOfTickets}))
+            .map(({movieId, amountOfTickets})) // If the server accepts the booking, emit movieId and amountOfTickets from the bookingsStream
     )
 
 export const applicationStateProperty = initialState => Bacon.update(
