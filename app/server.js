@@ -95,9 +95,7 @@ const checksumPromise = filePath =>
 export const start = () => {
     const PORT = process.env.PORT || 4000
     const reportPages = () => {
-        pages.allPages.forEach(({pagePath}) => {
-            console.log(`Page available at http://localhost:${PORT}${pagePath}`.green)
-        })
+        console.log(`App available at http://localhost:${PORT}`.green)
     }
     return new Promise((resolve, reject) => {
         server.listen(PORT, resolve)
