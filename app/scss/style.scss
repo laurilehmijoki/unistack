@@ -1,5 +1,32 @@
 body {
   max-width: 1024px;
   margin: 0 auto;
-  text-align: center;
+}
+
+form {
+  label {
+    margin-right: 6px;
+  }
+  section:not(first-child), button {
+    margin-top: 12px;
+  }
+  input[type=number] {
+    width: 5rem;
+  }
+  input {
+    border: 2px solid orange;
+    padding: 3px;
+    &:focus {
+      outline: none;
+    }
+    &.empty:not(.required) {
+      border-color: lightgrey;
+    }
+    &.value-is-valid {
+      border-color: limegreen;
+    }
+  }
+  .error {
+    color: red;
+  }
 }

@@ -32,6 +32,27 @@ server.get('*', (req, res, next) => {
     }
 })
 
+server.get('/api/credit-cards/:creditCard', (req, res, next) => {
+    const simulatedBackendCallDelay = Math.random() * 100
+    const creditCardNumber = req.params.creditCard
+    const lengthOk = (() => {
+        const length = creditCardNumber.replace(/\s/g, '').length
+        return length >= 14 && length <= 16 // We accept credit cards that have [14,16] characters
+    })()
+    const NO_ERROR = undefined
+    const response = {
+        errors: [
+            lengthOk ? NO_ERROR : 'The credit card number is too short or long',
+            lengthOk && /^\s*1234.*/.test(creditCardNumber) ? NO_ERROR : 'You entered an invalid credit card number'
+        ].filter(error => error !== NO_ERROR)
+    }
+    setTimeout(
+        () => { res.json(response) },
+        simulatedBackendCallDelay
+    )
+
+})
+
 const serveStaticResource = filePath => (req, res, next) => {
     checksumPromise(filePath)
         .then(checksum => {
