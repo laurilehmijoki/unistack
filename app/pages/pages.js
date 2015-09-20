@@ -1,5 +1,5 @@
 export const allPages = [
-    require('./frontPage')
+    require('./bookMovieTickets')
 ]
 
 export const findPage = path =>
