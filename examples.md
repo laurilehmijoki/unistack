@@ -24,3 +24,7 @@ or
 ### Source code
 
 <https://github.com/laurilehmijoki/unistack/tree/examples/book-movie-tickets>
+
+### Comparison with master
+
+<https://github.com/laurilehmijoki/unistack/compare/master...examples/book-movie-tickets>
