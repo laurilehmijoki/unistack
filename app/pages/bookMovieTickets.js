@@ -73,6 +73,9 @@ export const renderPage = applicationState =>
 const userBookingsPath = new RegExp('^/user/(.*)/bookings')
 const frontPagePath = new RegExp('^/$')
 
+/**
+ * These regular expressions define the HTTP URLs that our ticket booking application supports
+ */
 export const pagePaths = [frontPagePath, userBookingsPath]
 
 export const findUserId = url => {
