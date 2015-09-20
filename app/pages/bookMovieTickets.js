@@ -52,14 +52,14 @@ const showBookings = applicationState =>
 export const renderPage = applicationState =>
     <body>
         <h1 className="page-title">{pageTitle}</h1>
-        {(() => {
+        {(() => { // Select the view based on the current url
             switch (true) {
-                case frontPagePath.test(applicationState.url):
+                case frontPagePath.test(applicationState.currentUrl):
                     return showMovies(applicationState)
-                case userBookingsPath.test(applicationState.url):
+                case userBookingsPath.test(applicationState.currentUrl):
                     return showBookings(applicationState)
                 default:
-                    return `Could not find a route for ${applicationState.url}`
+                    return `Could not find a route for ${applicationState.currentUrl}`
             }
         })()}
     </body>
@@ -76,7 +76,7 @@ export const findUserId = url => {
 
 export const initialState = (movies, initialUrl, initialBookings) => ({
     movies,
-    url: initialUrl,
+    currentUrl: initialUrl,
     bookings: initialBookings
 })
 
@@ -95,7 +95,7 @@ const userId = () => {
 }
 
 const bookingButtonClickedBus = new Bacon.Bus()
-const urlStream = Bacon.mergeAll(
+const currentUrlStream = Bacon.mergeAll(
     bookingButtonClickedBus.map(() => `/user/${userId()}/bookings`).doAction(url => history.pushState({}, '', url)),
     inBrowser ?
         Bacon
@@ -126,5 +126,5 @@ export const applicationStateProperty = initialState => Bacon.update(
         const nextBookings = {...previousBookings, [movieId]: amountOfTickets}
         return { ...applicationState, bookings: nextBookings}
     },
-    urlStream, (applicationState, url) => ({...applicationState, url})
+    currentUrlStream, (applicationState, currentUrl) => ({...applicationState, currentUrl})
 ).doLog('application state')
