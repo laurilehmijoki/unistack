@@ -138,8 +138,10 @@ export const applicationStateProperty = initialState => Bacon.update(
     initialState,
     bookingsStream, (applicationState, {movieId, amountOfTickets}) => {
         const previousBookings = applicationState.bookings
-        const nextBookings = {...previousBookings, [movieId]: amountOfTickets}
-        return { ...applicationState, bookings: nextBookings}
+        const newBooking = {...previousBookings, [movieId]: amountOfTickets}
+        return { ...applicationState, bookings: newBooking} // Add the new booking into the application state
     },
-    currentUrlStream, (applicationState, currentUrl) => ({...applicationState, currentUrl})
+    currentUrlStream, (applicationState, currentUrl) => (
+        {...applicationState, currentUrl} // Add the changed url into the application state
+    )
 ).doLog('application state')
