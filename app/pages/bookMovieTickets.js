@@ -3,6 +3,9 @@ import Bacon from 'baconjs'
 import inBrowser from './inBrowser'
 import request from 'superagent-bluebird-promise'
 
+/**
+ * @return a view that lists the scheduled movies and the input elements for booking tickets on those movies
+ */
 const showMovies = applicationState =>
     <ul className="movies">
     {
@@ -31,6 +34,9 @@ const showMovies = applicationState =>
     }
     </ul>
 
+/**
+ * @return a view that describes the bookings of the user
+ */
 const showBookings = applicationState =>
     <div>
         <h2>Your bookings</h2>
