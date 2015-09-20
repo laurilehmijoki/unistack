@@ -85,9 +85,9 @@ export const pageTitle = 'Book movie tickets'
 const userId = () => {
     const localStorageKey = 'bookingAppUserId'
     const storedUserId = localStorage.getItem(localStorageKey)
-    if (storedUserId) {
+    if (storedUserId) { // Get the existing user id from local storage
         return storedUserId
-    } else {
+    } else { // Generate a new user id and persist it into the local storage
         const generatedUserId = Math.random().toString()
         localStorage.setItem(localStorageKey, generatedUserId)
         return generatedUserId
