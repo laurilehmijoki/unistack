@@ -63,7 +63,7 @@ server.get('*', (req, res, next) => {
 })
 
 server.put('/api/users/:userId/bookings/:movieId', (req, res, next) => {
-    var userId = req.params.userId
+    const userId = req.params.userId
     const userBookings = bookings[userId] || {}
     bookings[userId] = {...userBookings, // Store the booking into the database
         [req.params.movieId]: parseInt(req.query.amountOfTickets)
