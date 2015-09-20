@@ -3,4 +3,6 @@ exclude:
 - Gemfile
 - Gemfile.lock
 - node_modules
+- .idea
+- .generated
 permalink: /:title/
