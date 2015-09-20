@@ -3,7 +3,12 @@ export const allPages = [
 ]
 
 export const findPage = path =>
-    allPages.filter(({pagePath}) => {
-        const pathRegExp = pagePath instanceof RegExp ? pagePath : new RegExp(`^${pagePath}$`)
-        return pathRegExp.test(path)
-    })[0]
+    allPages.filter(({pagePaths}) =>
+        pagePaths
+            .map(pagePath => {
+                const pathRegExp = pagePath instanceof RegExp ? pagePath : new RegExp(`^${pagePath}$`)
+                return pathRegExp.test(path)
+            })
+            .filter(pagePathMatches => pagePathMatches == true).length > 0
+
+    )[0]

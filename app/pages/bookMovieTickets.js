@@ -54,9 +54,9 @@ export const renderPage = applicationState =>
         <h1 className="page-title">{pageTitle}</h1>
         {(() => {
             switch (true) {
-                case '/' == applicationState.url:
+                case frontPagePath.test(applicationState.url):
                     return showMovies(applicationState)
-                case new RegExp('/user/.*/bookings').test(applicationState.url):
+                case userBookingsPath.test(applicationState.url):
                     return showBookings(applicationState)
                 default:
                     return `Could not find a route for ${applicationState.url}`
@@ -64,10 +64,13 @@ export const renderPage = applicationState =>
         })()}
     </body>
 
-export const pagePath = new RegExp("((^\/$|^\/user/.*))")
+const userBookingsPath = new RegExp('^/user/(.*)/bookings')
+const frontPagePath = new RegExp('^/$')
+
+export const pagePaths = [frontPagePath, userBookingsPath]
 
 export const findUserId = url => {
-    const userIdFromUrl = url.match("/user/(.*?)/")
+    const userIdFromUrl = url.match(userBookingsPath)
     return userIdFromUrl ? userIdFromUrl[1] : undefined
 }
 
