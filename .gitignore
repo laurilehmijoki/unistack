@@ -1,1 +1,4 @@
 _site
+.generated
+.idea
+node_modules
