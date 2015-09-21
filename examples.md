@@ -23,8 +23,9 @@ or
 
 ### Source code
 
-<https://github.com/laurilehmijoki/unistack/tree/examples/book-movie-tickets>
+The most relevant file is
+[bookMovieTickets.js](https://github.com/laurilehmijoki/unistack/blob/examples/book-movie-tickets/app/pages/bookMovieTickets.js).
 
-### Comparison with master
+The comparison with master is [here](https://github.com/laurilehmijoki/unistack/compare/master...examples/book-movie-tickets).
 
-<https://github.com/laurilehmijoki/unistack/compare/master...examples/book-movie-tickets>
+The full source code of the example is [here](https://github.com/laurilehmijoki/unistack/tree/examples/book-movie-tickets).
