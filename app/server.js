@@ -11,6 +11,8 @@ const fs = Promise.promisifyAll(require('fs'))
 
 const server = express()
 
+server.use(compression({threshold: 512}))
+
 const cssFilePath = path.resolve(`${__dirname}/../.generated/style.css`)
 const bundleJsFilePath = path.resolve(`${__dirname}/../.generated/bundle.js`)
 
@@ -49,8 +51,6 @@ const serveStaticResource = filePath => (req, res, next) => {
 server.get('/style.css', serveStaticResource(cssFilePath))
 
 server.get('/bundle.js', serveStaticResource(bundleJsFilePath))
-
-server.use(compression({threshold: 512}))
 
 const checksumPromise = filePath =>
     fs
