@@ -59,15 +59,15 @@ able to replace Bacon.js with RxJS in Unistack.
 The word Unistack derives from **Uni**versal JavaScript and **Uni**directional
 Data Flow.
 
-## What is Univeral JavaScript?
+## What is Universal JavaScript?
 
-Literally, Univeral JavaScript means that a programmer uses JavaScript
+Literally, Universal JavaScript means that a programmer uses JavaScript
 everywhere.
 
 In practice, it means that both the server and the client are written in
 JavaScript.
 
-## What are the benefits of Univeral JavaScript?
+## What are the benefits of Universal JavaScript?
 
 * You can use the same libraries and source files both on the server and on the
   client
