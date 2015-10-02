@@ -13,7 +13,7 @@ Bacon.js contains a comprehensive set of tools for modelling asynchronous
 programs. Most programming problems in web applications involve asynchronicity.
 Hence, Bacon.js is a useful tool for webapp programming.
 
-How Bacon.js tackles with asynchronicity? Please continue reading.
+How Bacon.js tackles asynchronicity? Please continue reading.
 
 Bacon.js incorporates ideas from the world of functional programming. In
 functional programming, state-management problems are either absent or strictly
