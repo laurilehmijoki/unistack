@@ -5,7 +5,7 @@ layout: default
 
 ## Why Unistack exists?
 
-* Without Unistack, it can be tedious to set up a new Bacon.js+React software project
+Without Unistack, it can be tedious to set up a new Bacon.js+React software project
 
 ## Why Unistack uses Bacon.js?
 
