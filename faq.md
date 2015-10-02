@@ -53,3 +53,46 @@ tools for solving common problems in web application programming.
 
 Yes there are. For example RxJS. If you are familiar with RxJS, you should be
 able to replace Bacon.js with RxJS in Unistack.
+
+## Where does the name Unistack come from?
+
+The word Unistack derives from **Uni**versal JavaScript and **Uni**directional
+Data Flow.
+
+## What is Univeral JavaScript?
+
+Literally, Univeral JavaScript means that a programmer uses JavaScript
+everywhere.
+
+In practice, it means that both the server and the client are written in
+JavaScript.
+
+## What are the benefits of Univeral JavaScript?
+
+* You can use the same libraries and source files both on the server and on the
+  client
+* You only need to master JavaScript to write a complete web application
+  * You don't have to master both C++ and JavaScript, for example
+* You can describe the initial state of the web application on the server, then
+  render that state as HTML and finally send the HTML to the user along with the
+  first HTTP response
+  * This results in good user experience, because the user sees the first state
+    of the application on the screen even though the browser application has not
+    yet started
+  * See [Isomorphic
+    JavaScript by Airbnb](http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/) and [Universal JavaScript by Michael Jackson](https://medium.com/@mjackson/universal-javascript-4761051b7ae9) for more info
+
+## What is Unidirectional Data Flow?
+
+In unidirectional data flow, two software components never interact directly
+with each other. This removes a class of problems that is caused by tightly,
+i.e., bidirectionally bound, software components.
+
+The Facebook Flux architecture describes the unidirectional data flow
+[here](https://facebook.github.io/flux/docs/overview.html#structure-and-data-flow).
+
+Here's how unidirectional data flow looks like with Bacon.js:
+
+![Alt text](images/unidirectional-data-flow-with-bacon.js.png "Unidirectional
+data flow with Bacon.js")
+
