@@ -5,7 +5,8 @@ layout: default
 
 # Unistack
 
-Unistack is a starter kit for building web applications.
+Unistack is a starter kit for building web applications with Node.js, React and
+Bacon.js.
 
 ## Features
 
