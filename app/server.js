@@ -1,5 +1,6 @@
 import express from 'express'
 import React from 'react'
+import ReactDOMServer from 'react-dom/server'
 import basePage from './pages/basePage.js'
 import * as pages from './pages/pages.js'
 import path from 'path'
@@ -22,7 +23,7 @@ server.get('*', (req, res, next) => {
         Promise
             .all([checksumPromise(cssFilePath), checksumPromise(bundleJsFilePath)])
             .then(([cssChecksum, bundleJsChecksum]) => {
-                res.send(React.renderToString(basePage(
+                res.send(ReactDOMServer.renderToString(basePage(
                     page,
                     page.initialState,
                     { cssChecksum, bundleJsChecksum}

@@ -1,5 +1,5 @@
 import React from 'react'
-React.initializeTouchEvents(true)
+import ReactDOM from 'react-dom'
 import * as pages from './pages/pages'
 import basePage from './pages/basePage'
 
@@ -19,4 +19,4 @@ const App = React.createClass({
     }
 })
 
-window.onload = () => React.render(<App/>, document)
+window.onload = () => ReactDOM.render(<App/>, document)
