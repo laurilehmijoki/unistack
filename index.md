@@ -28,15 +28,15 @@ setting up a new software project:
 
 ## How to start a new webapp project with Unistack
 
-    git clone https://github.com/laurilehmijoki/unistack.git /tmp/my-new-project 
+    git clone https://github.com/laurilehmijoki/unistack.git /tmp/my-new-project
     cd /tmp/my-new-project
     rm -rf /tmp/my-new-project/.git
     git init
     git add --all
-    git commit -m "Initial commit" 
+    git commit -m "Initial commit"
     npm start
-    
+
 ### How to add a new page into a Unistack project
-    
-    npm install 
+
+    npm install
     ./create-new-route
