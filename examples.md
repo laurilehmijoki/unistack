@@ -29,3 +29,27 @@ The most relevant file is
 The comparison with master is [here](https://github.com/laurilehmijoki/unistack/compare/master...examples/book-movie-tickets).
 
 The full source code of the example is [here](https://github.com/laurilehmijoki/unistack/tree/examples/book-movie-tickets).
+
+<hr/>
+
+## Testing with Zombie
+
+Features
+
+* Integrate [Zombie](http://zombie.js.org) with Unistack
+
+### Usage
+
+    mkdir -p /tmp/unistack-examples
+    git clone --branch examples/zombie-testing https://github.com/laurilehmijoki/unistack.git /tmp/unistack-examples/zombie-testing
+    cd /tmp/unistack-examples/zombie-testing
+    npm test
+
+### Source code
+
+The most relevant file is
+[test.js](https://github.com/laurilehmijoki/unistack/blob/examples/zombie-testing/test/test.js).
+
+The comparison with master is [here](https://github.com/laurilehmijoki/unistack/compare/master...examples/zombie-testing).
+
+The full source code of the example is [here](https://github.com/laurilehmijoki/unistack/tree/examples/zombie-testing).
