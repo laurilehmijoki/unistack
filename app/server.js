@@ -65,5 +65,7 @@ export const start = () => {
             console.log(`Page available at http://localhost:${PORT}${pagePath}`.green)
         })
     }
-    server.listen(PORT, reportPages)
+    return new Promise((resolve) => {
+        server.listen(PORT, resolve)
+    }).then(reportPages)
 }
