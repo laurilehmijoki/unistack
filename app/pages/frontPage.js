@@ -3,23 +3,24 @@ import Bacon from 'baconjs'
 
 export const renderPage = applicationState =>
     <body>
-        <h1>hello unistack!</h1>
-        <button onClick={() => buttonClickedBus.push()}>
-            click me
+        <h1>Counter application</h1>
+        <button>
+            increment the count
         </button>
-        <div id="clicks">{applicationState.clicks}</div>
+        <button>
+            double the count
+        </button>
+        <div id="count">{applicationState.count}</div>
     </body>
 
 export const initialState = {
-    clicks: 0
+    count: 0
 }
 
 export const pagePath = '/'
 
 export const pageTitle = 'Unistack'
 
-const buttonClickedBus = new Bacon.Bus()
 export const applicationStateProperty = initialState => Bacon.update(
-    initialState,
-    buttonClickedBus, applicationState => ({...applicationState, clicks: applicationState.clicks + 1})
+    initialState
 ).doLog('application state')

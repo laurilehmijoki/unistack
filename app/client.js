@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import * as pages from './pages/pages'
 import basePage from './pages/basePage'
+require('./prepareForAssignment')
 
 const currentPage = pages.findPage(document.location.pathname)
 
