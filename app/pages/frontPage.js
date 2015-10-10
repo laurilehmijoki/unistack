@@ -7,7 +7,7 @@ export const renderPage = applicationState =>
         <button onClick={() => buttonClickedBus.push()}>
             click me
         </button>
-        <div>{applicationState.clicks}</div>
+        <div id="clicks">{applicationState.clicks}</div>
     </body>
 
 export const initialState = {

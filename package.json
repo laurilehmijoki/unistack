@@ -4,7 +4,9 @@
   "description": "An example of unistack",
   "private": true,
   "scripts": {
-    "start": "./start"
+    "start": "./start",
+    "pretest": "npm install && node_modules/node-sass/bin/node-sass app/scss/style.scss --output .generated && NODE_ENV=production node_modules/browserify/bin/cmd.js --entry app/client.js > .generated/bundle.js",
+    "test": "./node_modules/.bin/mocha --delay --compilers js:babel/register test/test.js"
   },
   "license": "MIT",
   "dependencies": {
@@ -28,8 +30,10 @@
     ]
   },
   "devDependencies": {
+    "mocha": "2.3.3",
     "nodemon": "1.3.6",
     "supervisor": "0.6.0",
-    "watchify": "3.1.0"
+    "watchify": "3.1.0"  ,
+    "zombie": "4.1.0"
   }
 }
