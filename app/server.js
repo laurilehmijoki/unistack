@@ -58,14 +58,13 @@ const checksumPromise = filePath =>
         .readFileAsync(filePath)
         .then(fileContent => crypto.createHash('md5').update(fileContent).digest('hex'))
 
-export const start = () => {
-    const PORT = process.env.PORT || 4000
+export const start = port => {
     const reportPages = () => {
         pages.allPages.forEach(({pagePath}) => {
-            console.log(`Page available at http://localhost:${PORT}${pagePath}`.green)
+            console.log(`Page available at http://localhost:${port}${pagePath}`.green)
         })
     }
     return new Promise((resolve, reject) => {
-        server.listen(PORT, resolve)
+        server.listen(port, resolve)
     }).then(reportPages)
 }
