@@ -1,4 +1,3 @@
-require('babel/register')
-require('colors')
+require('./augmentRuntime')
 
 require('./server').start()
