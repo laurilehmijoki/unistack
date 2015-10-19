@@ -1,6 +1,7 @@
+/* @flow */
 import React from 'react'
 
-export default (page, applicationState, checksums) =>
+export default (page: Page, applicationState: ApplicationState, checksums: Checksums): ReactElement =>
     <html>
         <head>
             <link rel="stylesheet" href={`/style.css?checksum=${checksums.cssChecksum}`}/>

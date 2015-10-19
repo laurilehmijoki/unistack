@@ -1,19 +1,22 @@
+/* @flow */
 import React from 'react'
 import ReactDOM from 'react-dom'
 import * as pages from './pages/pages'
 import basePage from './pages/basePage'
 
-const currentPage = pages.findPage(document.location.pathname)
+const currentPage: Page = pages.findPage(document.location.pathname)
 
 const App = React.createClass({
     componentWillMount: function() {
         currentPage
             .applicationStateProperty(window.INITIAL_STATE)
-            .onValue(applicationState => this.replaceState(applicationState))
+            .onValue((applicationState: ApplicationState) => this.replaceState(applicationState))
     },
     render: function() {
-        return this.state ?
-            basePage(currentPage, this.state, window.CHECKSUMS)
+        const state: any = this.state
+        const applicationState: ?ApplicationState = state
+        return applicationState ?
+            basePage(currentPage, applicationState, window.CHECKSUMS)
             :
             <span>Loading...</span>
     }
