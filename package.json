@@ -1,12 +1,8 @@
 {
-  "name": "unistack",
-  "version": "0.0.1",
-  "description": "An example of unistack",
   "private": true,
   "scripts": {
     "start": "./start"
   },
-  "license": "MIT",
   "dependencies": {
     "babel": "5.8.21",
     "babelify": "6.2.0",
