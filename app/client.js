@@ -7,8 +7,9 @@ const currentPage = pages.findPage(document.location.pathname)
 
 const App = React.createClass({
     componentWillMount: function() {
+        const initialState = JSON.parse(document.getElementById("applicationState").getAttribute('data-state'))
         currentPage
-            .applicationStateProperty(window.INITIAL_STATE)
+            .applicationStateProperty(initialState)
             .onValue(applicationState => this.replaceState(applicationState))
     },
     render: function() {
