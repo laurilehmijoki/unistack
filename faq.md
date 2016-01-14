@@ -86,7 +86,7 @@ JavaScript.
 
 In unidirectional data flow, two software components never interact directly
 with each other. This removes a class of problems that is caused by tightly,
-i.e., bidirectionally bound, software components.
+i.e. bidirectionally, bound software components.
 
 The Facebook Flux architecture describes the unidirectional data flow
 [here](https://facebook.github.io/flux/docs/overview.html#structure-and-data-flow).
