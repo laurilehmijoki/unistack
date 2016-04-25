@@ -6,7 +6,8 @@
 
 ## Usage
 
-    bundle exec jekyll serve --watch
+    bundle update
+    bundle exec jekyll serve
 
 ## Deployment
 
