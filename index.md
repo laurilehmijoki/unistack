@@ -37,7 +37,3 @@ setting up a new software project:
     git commit -m "Initial commit"
     npm start
 
-### How to add a new page into a Unistack project
-
-    npm install
-    ./create-new-route
