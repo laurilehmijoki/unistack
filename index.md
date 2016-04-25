@@ -20,7 +20,6 @@ setting up a new software project:
 * production-ready build
   * automatic minification of the generated CSS and JavaScript files
   * cache-busted CSS and JavaScript resources
-  * deploy to Heroku or AWS Elastic Beanstalk without extra configuration
 * developer build
   * incremental Browserify build
   * SASS re-compilation on file change
