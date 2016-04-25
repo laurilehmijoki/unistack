@@ -6,8 +6,6 @@ import * as pages from './pages/pages.js'
 import path from 'path'
 import compression from 'compression'
 import crypto from 'crypto'
-import Promise from 'bluebird'
-const fs = Promise.promisifyAll(require('fs'))
 
 const server = express()
 
@@ -53,9 +51,15 @@ server.get('/style.css', serveStaticResource(cssFilePath))
 server.get('/bundle.js', serveStaticResource(bundleJsFilePath))
 
 const checksumPromise = filePath =>
-    fs
-        .readFileAsync(filePath)
-        .then(fileContent => crypto.createHash('md5').update(fileContent).digest('hex'))
+    new Promise((resolve, reject) => {
+        require('fs').readFile(filePath, (error, fileContent) => {
+            if (error) {
+                reject(error)
+            } else {
+                resolve(crypto.createHash('md5').update(fileContent).digest('hex'))
+            }
+        })
+    })
 
 export const start = port => {
     const reportPages = () => {
