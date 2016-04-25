@@ -1,6 +1,7 @@
 ---
 title: Unistack examples
 layout: default
+permalink: examples.html
 ---
 
 ## Book movie tickets

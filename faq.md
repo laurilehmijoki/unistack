@@ -1,6 +1,7 @@
 ---
 title: Unistack FAQ
 layout: default
+permalink: faq.html
 ---
 
 ## Why Unistack exists?

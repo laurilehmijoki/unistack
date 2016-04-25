@@ -1,6 +1,7 @@
 ---
 title: Unistack
 layout: default
+permalink: index.html
 ---
 
 # Unistack
