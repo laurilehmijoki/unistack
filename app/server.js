@@ -4,12 +4,9 @@ import ReactDOMServer from 'react-dom/server'
 import basePage from './pages/basePage.js'
 import * as pages from './pages/pages.js'
 import path from 'path'
-import compression from 'compression'
 import crypto from 'crypto'
 
 const server = express()
-
-server.use(compression({threshold: 512}))
 
 const cssFilePath = path.resolve(`${__dirname}/../.generated/style.css`)
 const bundleJsFilePath = path.resolve(`${__dirname}/../.generated/bundle.js`)
