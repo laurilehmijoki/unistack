@@ -5,21 +5,37 @@ import basePage from './pages/basePage.js'
 import * as pages from './pages/pages.js'
 import path from 'path'
 import crypto from 'crypto'
+import * as database from './database'
+import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
 
 const server = express()
 
 const cssFilePath = path.resolve(`${__dirname}/../.generated/style.css`)
 const bundleJsFilePath = path.resolve(`${__dirname}/../.generated/bundle.js`)
 
+server.use(cookieParser())
+
 server.get('*', (req, res, next) => {
     const page = pages.findPage(req.url)
     if (page) {
         Promise
-            .all([checksumPromise(cssFilePath), checksumPromise(bundleJsFilePath)])
-            .then(([cssChecksum, bundleJsChecksum]) => {
+            .all([
+                checksumPromise(cssFilePath),
+                checksumPromise(bundleJsFilePath),
+                page.initialState({
+                    database,
+                    query: req.query,
+                    cookies: req.cookies
+                })
+            ])
+            .then(([cssChecksum, bundleJsChecksum, pageInitialState]) => {
+                Object.keys(page.httpHeaders || {}).forEach(name => {
+                    res.setHeader(name, page.httpHeaders[name])
+                })
                 res.send(ReactDOMServer.renderToString(basePage(
                     page,
-                    page.initialState,
+                    pageInitialState,
                     { cssChecksum, bundleJsChecksum}
                 )))
             })
@@ -27,6 +43,25 @@ server.get('*', (req, res, next) => {
     } else {
         next()
     }
+})
+
+server.post('/checkout', bodyParser.urlencoded({extended: true}), (req, res, next) => {
+    const shoppingCart = JSON.parse(req.body['shopping-cart'])
+    const customerId = req.cookies['customer-id'] || Math.random()
+    res.cookie('customer-id', customerId)
+    database
+        .persistShoppingCart(shoppingCart, customerId)
+        .then(() => {
+            res.redirect(`/checkout`)
+        })
+})
+
+server.post('/place-order', (req, res, next) => {
+    database
+        .clearShoppingCart(req.cookies['customer-id'])
+        .then(() => {
+            res.redirect(`/checkout-completed`)
+        })
 })
 
 const serveStaticResource = filePath => (req, res, next) => {
@@ -57,6 +92,12 @@ const checksumPromise = filePath =>
             }
         })
     })
+
+server.use((error, req, res, next) => {
+    const message = error.stack || error.message || error
+    const statusCode = error.statusCode || 500
+    res.status(statusCode).send(message)
+})
 
 export const start = port => {
     const reportPages = () => {

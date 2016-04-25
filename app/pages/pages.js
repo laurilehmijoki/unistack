@@ -1,5 +1,7 @@
 export const allPages = [
-    require('./frontPage')
+    require('./frontPage'),
+    require('./checkoutPage'),
+    require('./thanksForOrderingPage')
 ]
 
 export const findPage = path =>

@@ -1,5 +1,140 @@
-body {
-  max-width: 1024px;
-  margin: 0 auto;
-  text-align: center;
+@import "flexbox";
+
+$price: #3D82DE;
+$green: #05AD42;
+body, .header {
+  padding: 0;
+  margin: 0;
+}
+.header, .main {
+  padding: 0.4rem;
+  margin: 0;
+}
+
+.top-manufacturers {
+  list-style-type: none;
+  padding: 0;
+  @include flexbox();
+  @include flex-wrap(wrap);
+  &__manufacturer {
+    &:not(:last-child) {
+      margin-right: 12px;
+    }
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.product {
+  &__name {
+    font-size: larger;
+    display: block;
+    &::first-letter {
+      text-transform: capitalize;
+    }
+  }
+  &__manufacturer {
+    color: gray;
+    font-size: smaller;
+    display: block;
+    margin-top: 0.5rem;
+  }
+  &__description {
+    display: block;
+    margin-top: 0.5rem;
+    &::first-letter {
+      text-transform: capitalize;
+    }
+  }
+  &__price {
+    color: $price;
+  }
+  &__price-container, &__checkout-summary {
+    @include flexbox();
+    @include align-items(center);
+    @include flex-wrap(wrap);
+    margin-top: 0.5rem;
+  }
+  &__add-to-cart {
+    margin-left: 1rem;
+    color: $green;
+    font-size: 1.5rem !important;
+    cursor: pointer;
+    &__summary {
+      color: gray;
+      font-size: smaller;
+      margin-left: 1rem;
+    }
+  }
+  &:not(:first-child) {
+    margin-top: 24px;
+    border-top: 1px solid lightgray;
+    padding-top: 12px;
+  }
+}
+
+.shopping-cart {
+  &__count {
+    margin-left: 0.5rem;
+  }
+  &__sum {
+    color: $price;
+    margin-left: 0.5rem;
+  }
+  &__checkout {
+    color: $green;
+    margin: 0 0 0 0.5rem;
+    cursor: pointer;
+    display: inline-block;
+  }
+}
+
+.checkout {
+  &__form {
+    border-top: 3px solid lightgray;
+    input {
+      margin-top: 0.5em;
+      display: block;
+      padding: 0.5em;
+      font-size: larger;
+    }
+    button {
+      border: none;
+      margin-top: 0.5rem;
+      padding: 1rem;
+      width: 100%;
+      transition: background-color 0.3s;
+      &.valid {
+        background-color: $green;
+      }
+    }
+  }
+}
+
+$headerHeight: 2.5rem;
+.header {
+  @include flexbox();
+  @include align-items(center);
+  @include justify-content(space-between);
+  @include flex-wrap(wrap);
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.97);
+  min-height: $headerHeight;
+
+  h1 {
+    margin: 0;
+    font-size: $headerHeight - 0.5;
+  }
+}
+.main {
+  padding-top: $headerHeight + 0.5;
 }
