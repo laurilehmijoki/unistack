@@ -60,7 +60,7 @@ const checksumPromise = filePath =>
 export const start = port => {
     const reportPages = () => {
         pages.allPages.forEach(({pagePath}) => {
-            console.log(`Page available at http://localhost:${port}${pagePath}`.green)
+            console.log(`Page available at http://localhost:${port}${pagePath}`)
         })
     }
     return new Promise((resolve, reject) => {
