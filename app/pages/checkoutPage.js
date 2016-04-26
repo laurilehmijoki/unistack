@@ -60,7 +60,7 @@ export const renderPage = applicationState =>
 
 const formIsValid = applicationState =>
     applicationState.formState.customerName && applicationState.formState.customerName.length > 2 &&
-    applicationState.formState.creditCardNumber && applicationState.formState.creditCardNumber.replace(/\s/g, '').match("\\d{16}")
+    applicationState.formState.creditCardNumber && applicationState.formState.creditCardNumber.replace(/\s/g, '').match("^\\d{16}$")
 
 const onFormValueChanged = name => event => formValueChangedBus.push({
     name,
