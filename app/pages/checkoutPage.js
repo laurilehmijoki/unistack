@@ -3,6 +3,7 @@ import Bacon from 'baconjs'
 import _ from 'lodash'
 import classnames from 'classnames'
 import * as shoppingCart from '../components/shoppingCart/shoppingCart'
+import {Product} from '../components/product/product'
 
 export const renderPage = applicationState =>
     <body>
@@ -15,22 +16,7 @@ export const renderPage = applicationState =>
                     _(applicationState.shoppingCart).groupBy('id').map((products, id) => {
                         const productCount = products.length
                         const product = products[0]
-                        return (
-                            <li className="product" key={id}>
-                                <span className="product__name">{product.name}</span>
-                                {product.manufacturer ?
-                                    <span className="product__manufacturer">By {product.manufacturer}</span>
-                                    :
-                                    undefined
-                                }
-                                <span className="product__description">{product.description}</span>
-                                <span className="product__checkout-summary">
-                                    <span className="product__price">
-                                        {productCount} <i className="fa fa-times"/> {product.price} = $ {productCount * product.price}
-                                    </span>
-                                </span>
-                            </li>
-                        )
+                        return <Product product={product} productCount={productCount} key={id}/>
                     }).value()
                 }
             </ul>
