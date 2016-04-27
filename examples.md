@@ -4,6 +4,22 @@ layout: default
 permalink: examples.html
 ---
 
+## Online shop
+
+Features
+
+* Database integration
+* Multiple pages
+* Cookies
+
+### Live demo
+
+<https://unistack-example-online-shop.herokuapp.com/>
+
+### Source code
+
+The full source code of the example is [here](https://github.com/laurilehmijoki/unistack/tree/examples/online-shop).
+
 ## Book movie tickets
 
 Features
